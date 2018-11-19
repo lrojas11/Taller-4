@@ -76,7 +76,7 @@ int main ()
 	y=0;
 	vx=300*cos(tetha);
 	vy=300*sin(tetha);
-	
+
 	//Inicializacion para los valores de vx y vy en i-dt/2 :
 	ax=a_x(vx,vy);
 	ay=a_y(vx,vy);
@@ -112,8 +112,3 @@ int main ()
 	cout<<"La Distancia maxima recorrida en metros es "<<distancia_maxima<<" y fue alcanzada para un angulo de "<<tetha_opt;
 	return 0;
 }
-
-	
-	 
-	
-
