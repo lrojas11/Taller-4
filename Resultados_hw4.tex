@@ -1,78 +1,45 @@
 \documentclass{article}
-\usepackage{lipsum}
-\usepackage[English]{babel}
-\usepackage[sc]{mathpazo}
-\usepackage[T1]{fontenc}
-\linespread{1}
-\usepackage{microtype}
-\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry}
-\usepackage{multicol}
-\usepackage[hang,small,labelfont=bf,up,textfont=it,up]{caption}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage{hyperref}
-\usepackage{lettrine}
-\usepackage{paralist}
 \usepackage[utf8]{inputenc}
-\usepackage{abstract}
-\usepackage{xcolor}
-\usepackage{titlesec}
-\renewcommand{\baselinestretch}{1.5}
-\usepackage[document]{ragged2e}
-\usepackage[normalem]{ulem}
-\usepackage{cite}
+
+\title{Taller 4 - Métodos computacionales}
+\author{Laura Rojas Vergara}
+\date{November 2018}
+
+\usepackage{natbib}
 \usepackage{graphicx}
-\graphicspath{ {images/} }
-\usepackage{fancyhdr} 
-\pagestyle{fancy} 
-\fancyhead{} 
-\fancyfoot{} 
-\usepackage{sectsty}
-\usepackage[inline]{enumitem}
-\sectionfont{\bfseries\Large\raggedright}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fancyhead[C]{Noviembre 2018$\bullet$ Universidad de los Andes$\bullet$ Taller 4 Met. Comp}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{textcomp}
-\usepackage{siunitx}
-\usepackage{amsmath}
-\usepackage{listings}
-\usepackage[makeroom]{cancel}
-\usepackage[export]{adjustbox}
-\usepackage{pdfpages}
-
-%---------------------------------------
-%	TITLE SECTION
-%---------------------------------------
-
-\title{\vspace{-15mm}\fontsize{20pt}{12pt}\selectfont\textbf{Taller 4 Métodos Computacionales}} 
-
-\date{\vspace{-5ex}}
-
-\author{
-    Rojas V., Laura  \\
-  \texttt{201413062}
-  }
-%------------------------------------------------------------------
 
 \begin{document}
+
 \maketitle
-\thispagestyle{fancy}
+
+\section{ODE}
+
+En este ejercicio se resolvió la ecuación de un proyectil para el caso en que hay fricción proporcional a $v^2$:
+
+\begin{equation}
+   \frac{d^2\vec{x}(t)}{dt^2} = -\vec{g}-c \frac{|\vec{v}(t)|^2}{m} \frac{\vec{v}(t)}{|\vec{v}(t)|}
+\end{equation}
+
+Donde la aceleración gravitacional g = 10 $m/s^2$, el coeficiente de fricción c = 0.2 y la masa del proyectil m = 0.2 kg. 
+
+\subsection{Ecuación Movimiento Proyectil}
+
+En la primera parte se tomo como condición inicial $\vec{x}(t = 0) = (0,0)$ y una velocidad de 300 m/s, con un ángulo de $45^\circ$ respecto a la horizontal. 
 
 
-\section{Ecuación Movimiento Proyectil}
 
-De esta gráfica podemos observar el comṕortaiento del proyectil para los distintos ángulos. Vale la pena resaltar que el ángulo con mayor alcance horizontal es el de 20 $\circ$ , mientras que para el ángulo de 45 $\circ$, es apóximadamente la mitad. Adiconalmente, se plotearon todos los ángulos en una misma imagen para una mejor análisis y comparación de los resultados.
+De esta gráfica \ref{proyectil} podemos observar el comportamiento del proyectil para los distintos ángulos. Vale la pena resaltar que el ángulo con mayor alcance horizontal es el de $20^\circ$ , mientras que para el ángulo de $45^\circ$, es aproximadamente la mitad. Adicionalmente, se plotearon todos los ángulos en una misma imagen para un mejor análisis y comparación de los resultados.
 
-{
-\includegraphics[scale=0.5,center]{dinamica_proyectil.png}
-\captionof{figure}{Gráfica para la trayectoria del proyectil a diferentes ángulos}
-}
-
-
-\section{Solución Ecuación de Difusión}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{Dinamica_proyectil}
+\caption{Gráfica para la trayectoria del proyectil a diferentes ángulos}
+\label{proyectil}
+\end{figure}
 
 
 
-\end{document} 
+%\bibliographystyle{plain}
+%\bibliography{references}
+\end{document}
+ 
