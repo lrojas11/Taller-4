@@ -1,78 +1,158 @@
 \documentclass{article}
-\usepackage{lipsum}
-\usepackage[English]{babel}
-\usepackage[sc]{mathpazo}
-\usepackage[T1]{fontenc}
-\linespread{1}
-\usepackage{microtype}
-\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry}
-\usepackage{multicol}
-\usepackage[hang,small,labelfont=bf,up,textfont=it,up]{caption}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage{hyperref}
-\usepackage{lettrine}
-\usepackage{paralist}
 \usepackage[utf8]{inputenc}
-\usepackage{abstract}
-\usepackage{xcolor}
-\usepackage{titlesec}
-\renewcommand{\baselinestretch}{1.5}
-\usepackage[document]{ragged2e}
-\usepackage[normalem]{ulem}
-\usepackage{cite}
+
+\title{Taller 4 - Métodos computacionales}
+\author{Laura Rojas Vergara}
+\date{November 2018}
+
+\usepackage{natbib}
 \usepackage{graphicx}
-\graphicspath{ {images/} }
-\usepackage{fancyhdr} 
-\pagestyle{fancy} 
-\fancyhead{} 
-\fancyfoot{} 
-\usepackage{sectsty}
-\usepackage[inline]{enumitem}
-\sectionfont{\bfseries\Large\raggedright}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fancyhead[C]{Noviembre 2018$\bullet$ Universidad de los Andes$\bullet$ Taller 4 Met. Comp}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{textcomp}
-\usepackage{siunitx}
-\usepackage{amsmath}
-\usepackage{listings}
-\usepackage[makeroom]{cancel}
-\usepackage[export]{adjustbox}
-\usepackage{pdfpages}
-
-%---------------------------------------
-%	TITLE SECTION
-%---------------------------------------
-
-\title{\vspace{-15mm}\fontsize{20pt}{12pt}\selectfont\textbf{Taller 4 Métodos Computacionales}} 
-
-\date{\vspace{-5ex}}
-
-\author{
-    Rojas V., Laura  \\
-  \texttt{201413062}
-  }
-%------------------------------------------------------------------
 
 \begin{document}
+
 \maketitle
-\thispagestyle{fancy}
+
+\section{ODE}
+
+En este ejercicio se resolvió la ecuación de un proyectil para el caso en que hay fricción proporcional a $v^2$:
+
+\begin{equation}
+   \frac{d^2\vec{x}(t)}{dt^2} = -\vec{g}-c \frac{|\vec{v}(t)|^2}{m} \frac{\vec{v}(t)}{|\vec{v}(t)|}
+\end{equation}
 
 
-\section{Ecuación Movimiento Proyectil}
+Donde la aceleración gravitacional g = 10 $m/s^2$, el coeficiente de fricción c=0.2 y la masa del proyectil m = 0.2 kg.
 
-De esta gráfica podemos observar el comṕortaiento del proyectil para los distintos ángulos. Vale la pena resaltar que el ángulo con mayor alcance horizontal es el de 20 $\circ$ , mientras que para el ángulo de 45 $\circ$, es apóximadamente la mitad. Adiconalmente, se plotearon todos los ángulos en una misma imagen para una mejor análisis y comparación de los resultados.
+\subsection{Ecuación Movimiento Proyectil}
 
-{
-\includegraphics[scale=0.5,center]{dinamica_proyectil.jpg}
-\captionof{figure}{Gráfica para la trayectoria del proyectil a diferentes ángulos}
-}
+Se tomo como condición inicial $\vec{x}(t = 0) = (0,0)$ y una velocidad de 300 m/s, con un ángulo de $45^\circ$ respecto a la horizontal. Luego, se tomaron las mismas condiciones iniciales para los diferentes ángulos.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.55]{Dinamica_proyectil}
+\caption{Gráfica para la trayectoria del proyectil a diferentes ángulos}
+\label{proyectil}
+\end{figure}
 
 
-\section{Solución Ecuación de Difusión}
+Ahora bien, de esta gráfica 1 podemos observar el comportamiento del proyectil para los distintos ángulos. Vale la pena resaltar que el ángulo con mayor alcance horizontal es el de $20^\circ$ con una distancia de 5.2179 m, mientras que para el ángulo de $45^\circ$, es de 4.26005 m. También es importante observar que el movimiento del proyectil para todos los ángulos es de forma parabólica la cual esta dada por las fuerzas que actúan sobre el proyectil. Adicionalmente, se plotearon todos los ángulos en una misma imagen para un mejor análisis y comparación de los resultado.
 
 
+\section{PDE}
 
-\end{document} 
+En este ejercicio se resolvió la ecuación de difusión en 2 dimensiones:
+
+\begin{equation}
+    \frac{\partial T (x,y)}{\partial t-} = v \frac{\partial^2 T(x,y)}{\partial x^2} + v \frac{\partial^2 T (x,y)}{\partial y^2}
+\end{equation}
+
+\vspace{3mm}
+
+Suponemos que tenemos una varilla de 10 cm de diámetro que está entre una roca. Dicha roca es una calcita con un coeficiente de difusión $v = k/C_{p}\rho$, donde la conductividad térmica $k = 1.62 \frac{m^2}{s}$, el calor específico $C_{p} = 820 \frac{J}{kg K}$ y la densidad $\rho = 2.71 \frac{g}{cm^3}$. La temperatura de la varilla se mantiene siempre a $100^\circ C$. Solo se consideró una sección de roca 2D cuadrada de 50 cm por 50 cm alrededor de la varilla y perpendicular a ella.
+
+\vspace{3mm}
+
+Se realizó una gráfica de la temperatura promedio de la calcita en función del tiempo para los tres casos de condiciones de frontera. También para cada caso se realizó una gráfica 3D de las condiciones iniciales, dos gráficas de estados intermedios del sistema y una gráfica de la configuración en equilibrio.
+
+\vspace{3mm}
+Se puede ver que en los 3 casos la temperatura aumenta exponencialmente con el paso del tiempo (s). Para el caso 3 (Figura 8) alcanza la temperatura máxima en menor tiempo y luego se estabiliza, mientras que para el caso 1 y 2 (Figuras 2 y 5) toman más tiempo para alcanzar la máxima temperatura y un estado estable.
+
+\newpage
+
+\subsection{Caso 1 - Condiciones de fronteras fijas a $10^\circ C$}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{Caso1_promedio}
+\caption{Temperatura promedio - Caso 1}
+\label{temp1}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Condicion_inicial_caso_1}
+\includegraphics[scale=0.35]{Estado_estable_caso_1}
+\caption{Condición inicial y Estado estable - Caso 1}
+\label{cond1}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Estado_t3000s_caso_1}
+\includegraphics[scale=0.35]{Estado_t15000s_caso_1}
+\caption{Estado a 3000 y 15000 segundos - Caso 1}
+\label{Est3000}
+\end{figure}
+
+\vspace{3mm}
+
+Las anteriores imágenes muestran la gráfica 3D del caso 1, de la condición inicial (izquierda) y el estado estable (derecha) (Figura 3). Luego, se observan otras dos imágenes las cuales muestran el estado a 3000 segundos (izquierda) y a 15000 segundos (derecha) (Figura 4).
+
+
+\subsection{Caso 2 - Condiciones de frontera abiertas}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{Caso2_promedio}
+\caption{Temperatura promedio - Caso 2}
+\label{temp2}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Estado_inicial_caso_2}
+\includegraphics[scale=0.35]{Estado_estable_caso_2}
+\caption{Condición inicial y Estado estable - Caso 2}
+\label{cond2}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Estado_t60000s_caso_2}
+\includegraphics[scale=0.35]{Estado_t150000s_caso_2}
+\caption{Estado a 60000 y 150000 segundos - Caso 2}
+\label{Est2}
+\end{figure}
+
+\vspace{3mm}
+Las imágenes muestran la gráfica 3D del caso 2, de la condición inicial (izquierda) y el estado estable (derecha) (Figura 6). Luego, se observan otras dos imágenes las cuales muestran el estado a 60000 segundos (izquierda) y a 150000 segundos (derecha) (Figura 7).
+
+
+\newpage
+
+\subsection{Caso 3 - Condiciones de frontera periódicas}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{Caso3_promedio}
+\caption{Temperatura promedio - Caso 3}
+\label{temp3}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Estado_inicial_caso_3}
+\includegraphics[scale=0.35]{Estado_estable_caso_3}
+\caption{Condición inicial y Estado estable - Caso 3}
+\label{cond3}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.35]{Estado_t200000s_caso_3}
+\includegraphics[scale=0.35]{Estado_t500000s_caso_3}
+\caption{Estado a 200000 y 500000 segundos - Caso 3}
+\label{Est3}
+\end{figure}
+
+
+\vspace{3mm}
+Las imágenes muestran la gráfica 3D del caso 3, de la condición inicial (izquierda) y el estado estable (derecha) (Figura 9). Luego, se observan otras dos imágenes las cuales muestran el estado a 200000 segundos (izquierda) y a 500000 segundos (derecha) (Figura 10).
+
+
+\end{document}
