@@ -75,8 +75,45 @@ int main ()
 	x=0;
 	y=0;
 	vx=300*cos(tetha);
-	vy=300*sin(tetha);bala<<contador*dt<<","<<x<<","<<y<<","<<vx<<","<<vy<<"\n";
+	vy=300*sin(tetha);
+	
+	//Inicializacion para los valores de vx y vy en i-dt/2 :
+	ax=a_x(vx,vy);
+	ay=a_y(vx,vy);
+	vx_i_medio=vx-(dt/2)*ax;
+	vy_i_medio=vy-(dt/2)*ay;
+	//Salida de los datos bala("bala.txt");
+	contador=0;
+	// Loop para integrar:
+	while(y>=0){
+		ax=a_x(vx,vy);// Calculo vector aceleracion
+		ay=a_y(vx,vy);
+		vx_i_medio=vx_i_medio+dt*ax;
+
+		vy_i_medio=vy_i_medio+dt*ay;//Se obtienen los valores en i+t/2
+		//Calculo de posiciones X y Y:
+		x=x+vx_i_medio*dt;
+		y=y+vy_i_medio*dt;
+		ax=a_x(vx_i_medio,vy_i_medio);
+		ay=a_y(vx_i_medio,vy_i_medio);
+		vx=vx_i_medio+(dt/2)*ax;
+		vy=vy_i_medio+(dt/2)*ay;
+		contador+=1;
+		guardar<<contador*dt<<","<<x<<","<<y<<","<<vx<<","<<vy<<"\n";
 	}
+
+	if (x>distancia_maxima){
+		distancia_maxima=x;
+		tetha_opt=10*k;
+	}
+
+	}
+
+	cout<<"La Distancia maxima recorrida en metros es "<<distancia_maxima<<" y fue alcanzada para un angulo de "<<tetha_opt;
+	return 0;
+}
+
+	
 	 
 	
-}
+
