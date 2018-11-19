@@ -84,7 +84,49 @@ int main(){
 		}
 		punto1<<"\n";
 	}
-	
+	//SEGUNDO CASO: Fronteras Abiertas:
+	//Se asigna T=0 a todo el dominio:
+	for (int i=0;i<35;i++){
+		T_i[i]=0;
+	}
+	//Las paredes del cilindro:
+	T_i[34]=100;
+	T_i[35]=100;
+	T_i[29]=100;
+	//Se genera el archivo para almacenar los datos:
+	ofstream punto2("punto2.txt");
+
+	for (int paso=0;paso<100000;paso++){
+		// Nodos internos
+		for(int i=1;i<5;i++){//recorrer y
+			for(int j=1;j<6;j++){//recorrer x
+				T_ii[j+6*i]=T_i[j+6*i]+dt*v*(-4*T_i[j+6*i]+T_i[j+6*i+1]+T_i[j+6*i-1]+T_i[j+6*i+6]+T_i[j+6*i-6])/(delta_x*delta_x);
+			}
+		}
+		//Nodos simetria:
+		for (int i =0;i<3;i++){
+			T_ii[11+6*i]=T_i[11+6*i]+dt*v*(-4*T_i[11+6*i]+2*T_i[11+6*i-1]+T_i[11+6*i+6]+T_i[11+6*i-6])/(delta_x*delta_x);
+			T_ii[31+i]=T_i[31+i]+dt*v*(-4*T_i[31+i]+2*T_i[31+i-6]+T_i[31+i+1]+T_i[31+i-1])/(delta_x*delta_x);
+		}
+		//Para garantizar fornteras abiertas, se igualan las Temperaturas de los nodos de los bordes a las de los adyacentes:
+		for (int i=1;i<6;i++){
+			T_ii[i]=T_ii[i+6];
+			T_ii[6*i]=T_ii[i*6+1];
+		}
+		T_ii[0]=T_ii[1];
+		//Actualizar el vector T_i con los datos de T_ii:
+		for (int i=0;i<34;i++){
+			T_i[i]=T_ii[i];
+		}
+		T_i[29]=100;
+		T_i[34]=100;
+		T_i[35]=100;
+		//Exportar las temperaturas nuevas:
+		for (int i=0;i<36;i++){
+			punto2<<T_i[i]<<",";
+		}
+		punto2<<"\n";
+	}
 	
 	}
 	return 0;
